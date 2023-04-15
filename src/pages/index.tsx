@@ -1,12 +1,43 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import Link from "next/link";
+import { Dashboard } from "@/modules/Dashboard/Dashboard";
+import { secrets } from "../../creds";
+import { setCookie } from "cookies-next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+type SpotifyAccessToken = {
+  expires_in: string;
+  access_token: string;
+};
+
+export const getAccessToken = async (): Promise<SpotifyAccessToken> => {
+  const result = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `grant_type=client_credentials&client_id=${secrets.spotify.client_id}&client_secret=${secrets.spotify.client_secret}`,
+  });
+  const response = await result.json();
+  return await response;
+};
+
+export const getServerSideProps = async ({ req, res }) => {
+  const spotifyAccessToken = await getAccessToken();
+  setCookie("spotify_token", spotifyAccessToken.access_token, {
+    req,
+    res,
+    maxAge: parseInt(spotifyAccessToken.expires_in),
+    path: "/",
+  });
+
+  return {
+    props: {},
+  };
+};
+
+const Home = () => {
   return (
     <>
       <Head>
@@ -15,9 +46,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Link href="/events">Events List</Link>
-      </main>
+      <Dashboard />
     </>
   );
-}
+};
+
+export default Home;
