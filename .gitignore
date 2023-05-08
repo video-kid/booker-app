@@ -34,4 +34,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+#other
+package-lock.json
+
+#credentials
 creds.js
