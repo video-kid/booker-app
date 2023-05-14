@@ -1,5 +1,5 @@
 import { getCookie } from "cookies-next";
-import { useEffect, useState } from "react";
+import useSWR, { Fetcher } from "swr";
 
 type Artist = {
   genres: Array<string>;
@@ -10,47 +10,52 @@ type Artist = {
 
 export const Bands = () => {
   const spotifyAccessToken = getCookie("spotify_token");
-  const [artist, setArtist] = useState<Artist | null>(null);
 
-  const getArtistData = async (spotifyAccessToken: string) => {
-    const result = await fetch(
-      "https://api.spotify.com/v1/artists/16AVsBqzmIZTNHd0eX8VbK",
-      {
-        headers: {
-          Authorization: `Bearer  ${spotifyAccessToken}`,
-        },
-      }
-    );
-    const response = await result.json();
-    return await setArtist(response);
-  };
+  const fetcher: Fetcher<Artist> = (url: RequestInfo | URL) =>
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer  ${spotifyAccessToken}`,
+      },
+    }).then((res) => res.json());
 
-  useEffect(() => {
-    getArtistData(spotifyAccessToken as string);
-  }, [spotifyAccessToken]);
+  const { data, error, isLoading } = useSWR<Artist>(
+    "https://api.spotify.com/v1/artists/16AVsBqzmIZTNHd0eX8VbK",
+    fetcher
+  );
 
-  if (!artist) return;
   return (
     <section>
       <h1>bands</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>genres</th>
-            <th>id</th>
-            <th>popularity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{artist.name}</td>
-            <td>{artist.genres}</td>
-            <td>{artist.id}</td>
-            <td>{artist.popularity}</td>
-          </tr>
-        </tbody>
-      </table>
+      {!spotifyAccessToken || isLoading ? (
+        <>Loading...</>
+      ) : !error ? (
+        <table>
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>genres</th>
+              <th>id</th>
+              <th>popularity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data ? (
+              <tr>
+                <td>{data?.name}</td>
+                <td>{data?.genres}</td>
+                <td>{data?.id}</td>
+                <td>{data?.popularity}</td>
+              </tr>
+            ) : (
+              <tr>
+                <td colSpan={3}>no data</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      ) : (
+        <>err</>
+      )}
     </section>
   );
 };

@@ -6,11 +6,11 @@ const eventsList: Array<SongkickEventObject> = [
     id: 11129128,
     type: "Concert",
     uri: "http://www.songkick.com/concerts/11129128-wild-flag-at-fillmore?utm_source=PARTNER_ID&utm_medium=partner",
-    displayName: "Wild Flag at The Fillmore (April 18, 2012)",
+    displayName: "Wild Flag at The Fillmore (April 18, 2023)",
     start: {
       time: "20:00:00",
-      date: "2012-04-18",
-      datetime: "2012-04-18T20:00:00-0800",
+      date: "2023-05-18",
+      datetime: "2023-05-18T20:00:00-0800",
     },
     performance: [
       {

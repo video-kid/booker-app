@@ -1,10 +1,7 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import { Dashboard } from "@/modules/Dashboard/Dashboard";
 import { secrets } from "../../creds";
 import { setCookie } from "cookies-next";
-
-const inter = Inter({ subsets: ["latin"] });
 
 type SpotifyAccessToken = {
   expires_in: string;
