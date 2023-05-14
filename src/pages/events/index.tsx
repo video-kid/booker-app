@@ -1,41 +1,49 @@
 import { SongkickEventObject } from "@/types/events/events";
-import { useEffect, useState } from "react";
+import useSWR, { Fetcher } from "swr";
 
 export const Events = () => {
-  const [events, setEvents] = useState<undefined | Array<SongkickEventObject>>(
-    undefined
-  );
+  const fetcher: Fetcher<Array<SongkickEventObject>> = (
+    url: RequestInfo | URL
+  ) => fetch(url).then((res) => res.json());
 
-  useEffect(() => {
-    const getEventsList = async () => {
-      const result = await fetch("http://localhost:3000/api/events");
-      const response = await result.json();
-      setEvents(response);
-    };
-    getEventsList();
-  }, []);
+  const { data, error, isLoading } = useSWR<Array<SongkickEventObject>>(
+    "api/events",
+    fetcher
+  );
 
   return (
     <section>
       <h1>events</h1>
-      <table>
-        <thead>
-          <tr>
-            <td>name</td>
-            <td>date</td>
-            <td>venue</td>
-          </tr>
-        </thead>
-        <tbody>
-          {events?.map(({ displayName, start, venue }) => (
-            <tr key={displayName}>
-              <td>{displayName}</td>
-              <td>{start.date}</td>
-              <td>{venue.displayName}</td>
+      {isLoading ? (
+        <>Loading...</>
+      ) : !error ? (
+        <table>
+          <thead>
+            <tr>
+              <td>name</td>
+              <td>date</td>
+              <td>venue</td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data?.length ? (
+              data?.map(({ displayName, start, venue }) => (
+                <tr key={displayName}>
+                  <td>{displayName}</td>
+                  <td>{start.date}</td>
+                  <td>{venue.displayName}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3}>no data</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      ) : (
+        <>error</>
+      )}
     </section>
   );
 };
