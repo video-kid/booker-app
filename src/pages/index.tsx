@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Dashboard } from "@/modules/Dashboard/Dashboard";
 import { secrets } from "../../creds";
 import { setCookie } from "cookies-next";
+import axios from "axios";
 
 type SpotifyAccessToken = {
   expires_in: string;
@@ -9,15 +10,19 @@ type SpotifyAccessToken = {
 };
 
 export const getAccessToken = async (): Promise<SpotifyAccessToken> => {
-  const result = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `grant_type=client_credentials&client_id=${secrets.spotify.client_id}&client_secret=${secrets.spotify.client_secret}`,
-  });
-  const response = await result.json();
-  return await response;
+  const headers = { "Content-Type": "application/x-www-form-urlencoded" };
+  const body = `grant_type=client_credentials&client_id=${secrets.spotify.client_id}&client_secret=${secrets.spotify.client_secret}`;
+
+  return axios
+    .post("https://accounts.spotify.com/api/token", body, {
+      headers: headers,
+    })
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 export const getServerSideProps = async ({ req, res }) => {
