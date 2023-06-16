@@ -1,5 +1,6 @@
 import { SongkickEventObject } from "@/types/events/events";
 import useSWR, { Fetcher } from "swr";
+import * as Table from "../../components/Table/Table";
 
 export const Events = () => {
   const fetcher: Fetcher<Array<SongkickEventObject>> = (
@@ -17,30 +18,30 @@ export const Events = () => {
       {isLoading ? (
         <>Loading...</>
       ) : !error ? (
-        <table>
-          <thead>
-            <tr>
-              <td>name</td>
-              <td>date</td>
-              <td>venue</td>
-            </tr>
-          </thead>
-          <tbody>
+        <Table.Wrapper>
+          <Table.Header>
+            <Table.Row>
+              <Table.Heading>name</Table.Heading>
+              <Table.Heading>date</Table.Heading>
+              <Table.Heading>venue</Table.Heading>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {data?.length ? (
               data?.map(({ displayName, start, venue }) => (
-                <tr key={displayName}>
-                  <td>{displayName}</td>
-                  <td>{start.date}</td>
-                  <td>{venue.displayName}</td>
-                </tr>
+                <Table.Row key={displayName}>
+                  <Table.Record>{displayName}</Table.Record>
+                  <Table.Record>{start.date}</Table.Record>
+                  <Table.Record>{venue.displayName}</Table.Record>
+                </Table.Row>
               ))
             ) : (
-              <tr>
-                <td colSpan={3}>no data</td>
-              </tr>
+              <Table.Row>
+                <Table.Record span={3}>no data</Table.Record>
+              </Table.Row>
             )}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table.Wrapper>
       ) : (
         <>error</>
       )}
