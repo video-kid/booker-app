@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Dashboard } from "@/modules/Dashboard/Dashboard";
 import { secrets } from "../../creds";
 import { setCookie } from "cookies-next";
 import axios from "axios";
@@ -48,7 +47,6 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Dashboard />
     </>
   );
 };

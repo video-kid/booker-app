@@ -1,21 +1,14 @@
-import Link from "next/link";
+import { ReactNode } from "react";
+import { Sidebar } from "./components/Sidebar/Sidebar";
+import Header from "./components/Header/Header";
 
-const Dashboard = () => {
+const Dashboard = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
-      <main>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/bands">Bands List</Link>
-            </li>
-            <li>
-              <Link href="/events">Events List</Link>
-            </li>
-          </ul>
-        </nav>
-      </main>
-    </div>
+    <>
+      <Header />
+      <Sidebar />
+      <main>{children}</main>
+    </>
   );
 };
 
