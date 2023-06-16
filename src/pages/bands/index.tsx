@@ -1,5 +1,6 @@
 import { getCookie } from "cookies-next";
 import useSWR, { Fetcher } from "swr";
+import * as Table from "../../components/Table/Table";
 
 type Artist = {
   genres: Array<string>;
@@ -29,30 +30,30 @@ export const Bands = () => {
       {!spotifyAccessToken || isLoading ? (
         <>Loading...</>
       ) : !error ? (
-        <table>
-          <thead>
-            <tr>
-              <th>name</th>
-              <th>genres</th>
-              <th>id</th>
-              <th>popularity</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table.Wrapper>
+          <Table.Header>
+            <Table.Row>
+              <Table.Heading>name</Table.Heading>
+              <Table.Heading>genres</Table.Heading>
+              <Table.Heading>id</Table.Heading>
+              <Table.Heading>popularity</Table.Heading>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {data ? (
-              <tr>
-                <td>{data?.name}</td>
-                <td>{data?.genres}</td>
-                <td>{data?.id}</td>
-                <td>{data?.popularity}</td>
-              </tr>
+              <Table.Row>
+                <Table.Record>{data?.name}</Table.Record>
+                <Table.Record>{data?.genres}</Table.Record>
+                <Table.Record>{data?.id}</Table.Record>
+                <Table.Record>{data?.popularity}</Table.Record>
+              </Table.Row>
             ) : (
-              <tr>
-                <td colSpan={3}>no data</td>
-              </tr>
+              <Table.Row>
+                <Table.Record span={3}>no data</Table.Record>
+              </Table.Row>
             )}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table.Wrapper>
       ) : (
         <>err</>
       )}
