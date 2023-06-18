@@ -1,15 +1,20 @@
 import Link from "next/link";
+import styles from "./Sidebar.module.css";
 
 export const Sidebar = () => {
   return (
-    <aside>
+    <aside className={styles.sidebar}>
       <nav>
-        <ul>
+        <ul className={styles.menu}>
           <li>
-            <Link href="/bands">Bands List</Link>
+            <Link className={styles.menuElement} href="/bands">
+              Bands List
+            </Link>
           </li>
           <li>
-            <Link href="/events">Events List</Link>
+            <Link className={styles.menuElement} href="/events">
+              Events List
+            </Link>
           </li>
         </ul>
       </nav>

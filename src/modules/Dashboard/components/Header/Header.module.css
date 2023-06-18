@@ -1,0 +1,14 @@
+.header {
+  height: 8rem;
+  padding: 2rem;
+  background-color: var(--color-primary);
+}
+
+.logo {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 4rem;
+  line-height: 4rem;
+  font-family: var(--font-secondary);
+}
