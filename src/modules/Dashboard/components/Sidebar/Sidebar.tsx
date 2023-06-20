@@ -1,15 +1,30 @@
 import Link from "next/link";
+import styles from "./Sidebar.module.css";
+import dashboardStyles from "../../Dashboard.module.scss";
+import { useState } from "react";
 
 export const Sidebar = () => {
+  const [sidebarHide, setSidebarHide] = useState<boolean>(false);
   return (
-    <aside>
+    <aside
+      className={`${styles.sidebar} ${dashboardStyles.sidebar} ${
+        sidebarHide ? dashboardStyles.hidden : ""
+      }`}
+    >
+      <button className={"button"} onClick={() => setSidebarHide(!sidebarHide)}>
+        hide
+      </button>
       <nav>
-        <ul>
+        <ul className={styles.menu}>
           <li>
-            <Link href="/bands">Bands List</Link>
+            <Link className={styles.menuElement} href="/bands">
+              Bands List
+            </Link>
           </li>
           <li>
-            <Link href="/events">Events List</Link>
+            <Link className={styles.menuElement} href="/events">
+              Events List
+            </Link>
           </li>
         </ul>
       </nav>

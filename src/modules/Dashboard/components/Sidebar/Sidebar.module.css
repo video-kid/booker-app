@@ -1,0 +1,11 @@
+.sidebar {
+  padding: 1.5rem;
+}
+
+.menu {
+  list-style: none;
+}
+.menuElement {
+  text-decoration: none;
+  color: unset;
+}
