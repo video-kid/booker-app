@@ -1,0 +1,29 @@
+.page {
+  background-color: var(--background);
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 80px auto;
+  grid-template-columns: max-content;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+}
+
+.header {
+  grid-area: header;
+}
+
+.sidebar {
+  background-color: var(--background-sidebar);
+  grid-area: sidebar;
+  width: 200px;
+  transition: width 0.5s ease-in;
+}
+
+.hidden {
+  width: 50px;
+}
+
+.main {
+  grid-area: main;
+}

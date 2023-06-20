@@ -19,6 +19,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           --danger: ${color.severity.error};
           --warning: ${color.severity.warning};
           --color-primary: ${color.primary};
+          --background-sidebar: ${palette.grey["200"]};
         }
       `}</style>
       <Dashboard>
