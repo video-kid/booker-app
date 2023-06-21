@@ -9,7 +9,7 @@ type Artist = {
   popularity: number;
 };
 
-export const Bands = () => {
+const Bands = () => {
   const spotifyAccessToken = getCookie("spotify_token");
 
   const fetcher: Fetcher<Artist> = (url: RequestInfo | URL) =>

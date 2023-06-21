@@ -2,7 +2,7 @@ import { SongkickEventObject } from "@/types/events/events";
 import useSWR, { Fetcher } from "swr";
 import * as Table from "../../components/Table/Table";
 
-export const Events = () => {
+const Events = () => {
   const fetcher: Fetcher<Array<SongkickEventObject>> = (
     url: RequestInfo | URL
   ) => fetch(url).then((res) => res.json());
