@@ -1,6 +1,7 @@
 import { SongkickEventObject } from "@/types/events/events";
 import useSWR, { Fetcher } from "swr";
 import * as Table from "../../components/Table/Table";
+import { Section } from "@/components/Section/Section";
 
 const Events = () => {
   const fetcher: Fetcher<Array<SongkickEventObject>> = (
@@ -13,18 +14,16 @@ const Events = () => {
   );
 
   return (
-    <section>
+    <Section>
       <h1>events</h1>
       {isLoading ? (
         <>Loading...</>
       ) : !error ? (
         <Table.Wrapper>
           <Table.Header>
-            <Table.Row>
-              <Table.Heading>name</Table.Heading>
-              <Table.Heading>date</Table.Heading>
-              <Table.Heading>venue</Table.Heading>
-            </Table.Row>
+            <Table.Heading>name</Table.Heading>
+            <Table.Heading>date</Table.Heading>
+            <Table.Heading>venue</Table.Heading>
           </Table.Header>
           <Table.Body>
             {data?.length ? (
@@ -45,7 +44,7 @@ const Events = () => {
       ) : (
         <>error</>
       )}
-    </section>
+    </Section>
   );
 };
 

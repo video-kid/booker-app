@@ -37,4 +37,5 @@ export const color = {
     error: palette.red,
     information: palette.blue,
   },
+  tableHeader: palette.primary["600"],
 };

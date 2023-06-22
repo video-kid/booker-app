@@ -1,6 +1,7 @@
 import { getCookie } from "cookies-next";
 import useSWR, { Fetcher } from "swr";
 import * as Table from "../../components/Table/Table";
+import { Section } from "@/components/Section/Section";
 
 type Artist = {
   genres: Array<string>;
@@ -25,19 +26,17 @@ const Bands = () => {
   );
 
   return (
-    <section>
+    <Section>
       <h1>bands</h1>
       {!spotifyAccessToken || isLoading ? (
         <>Loading...</>
       ) : !error ? (
         <Table.Wrapper>
           <Table.Header>
-            <Table.Row>
-              <Table.Heading>name</Table.Heading>
-              <Table.Heading>genres</Table.Heading>
-              <Table.Heading>id</Table.Heading>
-              <Table.Heading>popularity</Table.Heading>
-            </Table.Row>
+            <Table.Heading>name</Table.Heading>
+            <Table.Heading>genres</Table.Heading>
+            <Table.Heading>id</Table.Heading>
+            <Table.Heading>popularity</Table.Heading>
           </Table.Header>
           <Table.Body>
             {data ? (
@@ -57,7 +56,7 @@ const Bands = () => {
       ) : (
         <>err</>
       )}
-    </section>
+    </Section>
   );
 };
 

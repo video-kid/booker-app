@@ -20,6 +20,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           --warning: ${color.severity.warning};
           --color-primary: ${color.primary};
           --background-sidebar: ${palette.grey["200"]};
+          --background-table-header: ${color.tableHeader};
+          --background-table-row-dark: ${palette.grey["200"]};
         }
       `}</style>
       <Dashboard>
