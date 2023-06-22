@@ -2,6 +2,8 @@ import { SongkickEventObject } from "@/types/events/events";
 import useSWR, { Fetcher } from "swr";
 import * as Table from "../../components/Table/Table";
 import { Section } from "@/components/Section/Section";
+import { Navbar } from "@/components/Navbar/Navbar";
+import { Heading } from "@/components/Heading/Heading";
 
 const Events = () => {
   const fetcher: Fetcher<Array<SongkickEventObject>> = (
@@ -15,7 +17,10 @@ const Events = () => {
 
   return (
     <Section>
-      <h1>events</h1>
+      <Navbar>
+        <Heading>events</Heading>
+      </Navbar>
+
       {isLoading ? (
         <>Loading...</>
       ) : !error ? (
