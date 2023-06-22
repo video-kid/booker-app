@@ -1,4 +1,5 @@
 import { FunctionComponent, ReactNode } from "react";
+import styles from "./Table.module.scss";
 
 type WrapperComponent = {
   children: ReactNode;
@@ -9,29 +10,39 @@ type RecordProps = {
 };
 
 const Wrapper: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <table>{children}</table>
+  <table className={styles.wrapper}>{children}</table>
 );
 
 const Header: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <thead>{children}</thead>
+  <thead className={styles.header}>
+    <tr>{children}</tr>
+  </thead>
 );
 
 const Heading: FunctionComponent<RecordProps & WrapperComponent> = ({
   children,
   span = 1,
-}) => <td colSpan={span}>{children}</td>;
+}) => (
+  <th colSpan={span} className={`${styles.record}`}>
+    {children}
+  </th>
+);
 
 const Body: FunctionComponent<WrapperComponent> = ({ children }) => (
   <tbody>{children}</tbody>
 );
 
 const Row: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <tr>{children}</tr>
+  <tr className={styles.row}>{children}</tr>
 );
 
 const Record: FunctionComponent<RecordProps & WrapperComponent> = ({
   children,
   span = 1,
-}) => <td colSpan={span}>{children}</td>;
+}) => (
+  <td colSpan={span} className={styles.record}>
+    {children}
+  </td>
+);
 
 export { Wrapper, Header, Heading, Body, Row, Record };
