@@ -2,6 +2,8 @@ import { getCookie } from "cookies-next";
 import useSWR, { Fetcher } from "swr";
 import * as Table from "../../components/Table/Table";
 import { Section } from "@/components/Section/Section";
+import { Navbar } from "@/components/Navbar/Navbar";
+import { Heading } from "@/components/Heading/Heading";
 
 type Artist = {
   genres: Array<string>;
@@ -27,7 +29,9 @@ const Bands = () => {
 
   return (
     <Section>
-      <h1>bands</h1>
+      <Navbar>
+        <Heading>bands</Heading>
+      </Navbar>
       {!spotifyAccessToken || isLoading ? (
         <>Loading...</>
       ) : !error ? (
