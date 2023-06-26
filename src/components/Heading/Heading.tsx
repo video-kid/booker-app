@@ -8,16 +8,16 @@ type HeadingProps = {
 
 const HeadingLevel = {
   primary(children: ReactNode) {
-    return <h1>{children}</h1>;
+    return <h1 className={styles.primary}>{children}</h1>;
   },
   secondary(children: ReactNode) {
-    return <h2>{children}</h2>;
+    return <h2 className={styles.secondary}>{children}</h2>;
   },
   terciary(children: ReactNode) {
-    return <h3>{children}</h3>;
+    return <h3 className={styles.terciary}>{children}</h3>;
   },
   subheader(children: ReactNode) {
-    return <h5>{children}</h5>;
+    return <h5 className={styles.subheader}>{children}</h5>;
   },
 };
 
