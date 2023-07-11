@@ -4,12 +4,10 @@ import * as Table from "../../components/Table/Table";
 import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
+import { useFetcher } from "@/hooks/useFetcher/useFetcher";
 
 const Events = () => {
-  const fetcher: Fetcher<Array<SongkickEventObject>> = (
-    url: RequestInfo | URL
-  ) => fetch(url).then((res) => res.json());
-
+  const { fetcher } = useFetcher<SongkickEventObject>();
   const { data, error, isLoading } = useSWR<Array<SongkickEventObject>>(
     "api/events",
     fetcher
