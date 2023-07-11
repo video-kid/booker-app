@@ -7,7 +7,7 @@ import { Heading } from "@/components/Heading/Heading";
 import { useFetcher } from "@/hooks/useFetcher/useFetcher";
 
 const Events = () => {
-  const { fetcher } = useFetcher<SongkickEventObject>();
+  const { fetcher } = useFetcher<Array<SongkickEventObject>>();
   const { data, error, isLoading } = useSWR<Array<SongkickEventObject>>(
     "api/events",
     fetcher
