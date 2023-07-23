@@ -1,10 +1,11 @@
 import { getCookie } from "cookies-next";
-import useSWR, { Fetcher } from "swr";
+import useSWR from "swr";
 import * as Table from "../../components/Table/Table";
 import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
 import { useFetcher } from "@/hooks/useFetcher/useFetcher";
+import { prepareSpotifyRequestParams } from "./utils";
 
 type Artist = {
   genres: Array<string>;
@@ -15,13 +16,10 @@ type Artist = {
 
 const Bands = () => {
   const spotifyAccessToken = getCookie("spotify_token");
-  const spotifyRequestParams = {
-    headers: {
-      Authorization: `Bearer  ${spotifyAccessToken}`,
-    },
-  };
 
-  const { fetcher } = useFetcher<Artist>(spotifyRequestParams);
+  const fetcher = useFetcher<Artist>(
+    prepareSpotifyRequestParams(spotifyAccessToken)
+  );
 
   const { data, error, isLoading } = useSWR<Artist>(
     "https://api.spotify.com/v1/artists/16AVsBqzmIZTNHd0eX8VbK",

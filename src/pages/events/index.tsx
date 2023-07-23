@@ -1,5 +1,5 @@
 import { SongkickEventObject } from "@/types/events/events";
-import useSWR, { Fetcher } from "swr";
+import useSWR from "swr";
 import * as Table from "../../components/Table/Table";
 import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
@@ -7,7 +7,7 @@ import { Heading } from "@/components/Heading/Heading";
 import { useFetcher } from "@/hooks/useFetcher/useFetcher";
 
 const Events = () => {
-  const { fetcher } = useFetcher<Array<SongkickEventObject>>();
+  const fetcher = useFetcher<Array<SongkickEventObject>>();
   const { data, error, isLoading } = useSWR<Array<SongkickEventObject>>(
     "api/events",
     fetcher

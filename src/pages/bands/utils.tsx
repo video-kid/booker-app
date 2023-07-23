@@ -1,4 +1,4 @@
-import { secrets } from "../../../creds";
+import { CookieValueTypes } from "cookies-next";
 
 export const getArtistData = async (spotifyAccessToken: string) => {
   const result = await fetch(
@@ -12,3 +12,11 @@ export const getArtistData = async (spotifyAccessToken: string) => {
   const response = await result.json();
   return await response;
 };
+
+export const prepareSpotifyRequestParams = (
+  spotifyAccessToken: CookieValueTypes
+) => ({
+  headers: {
+    Authorization: `Bearer  ${spotifyAccessToken}`,
+  },
+});
