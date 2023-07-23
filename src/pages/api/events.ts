@@ -6,7 +6,7 @@ const eventsList: Array<SongkickEventObject> = [
     id: 11129128,
     type: "Concert",
     uri: "http://www.songkick.com/concerts/11129128-wild-flag-at-fillmore?utm_source=PARTNER_ID&utm_medium=partner",
-    displayName: "Wild Flag at The Fillmore (April 18, 2023)",
+    displayName: "Wild Flag at The Fillmore (April 18, 2023)a",
     start: {
       time: "20:00:00",
       date: "2023-05-18",
@@ -52,7 +52,7 @@ const eventsList: Array<SongkickEventObject> = [
     id: 11129128,
     type: "Concert",
     uri: "http://www.songkick.com/concerts/11129128-wild-flag-at-fillmore?utm_source=PARTNER_ID&utm_medium=partner",
-    displayName: "Wild Flag at The Fillmore (April 18, 2023)",
+    displayName: "Wild Flag at The Fillmore (April 18, 2023)b",
     start: {
       time: "20:00:00",
       date: "2023-05-18",
@@ -98,7 +98,7 @@ const eventsList: Array<SongkickEventObject> = [
     id: 11129128,
     type: "Concert",
     uri: "http://www.songkick.com/concerts/11129128-wild-flag-at-fillmore?utm_source=PARTNER_ID&utm_medium=partner",
-    displayName: "Wild Flag at The Fillmore (April 18, 2023)",
+    displayName: "Wild Flag at The Fillmore (April 18, 2023)bb",
     start: {
       time: "20:00:00",
       date: "2023-05-18",
@@ -144,7 +144,7 @@ const eventsList: Array<SongkickEventObject> = [
     id: 11129128,
     type: "Concert",
     uri: "http://www.songkick.com/concerts/11129128-wild-flag-at-fillmore?utm_source=PARTNER_ID&utm_medium=partner",
-    displayName: "Wild Flag at The Fillmore (April 18, 2023)",
+    displayName: "Wild Flag at The Fillmore (April 18,b 2023)",
     start: {
       time: "20:00:00",
       date: "2023-05-18",
@@ -171,7 +171,7 @@ const eventsList: Array<SongkickEventObject> = [
     },
     venue: {
       id: 6239,
-      displayName: "The Fillmore",
+      displayName: "The Fillmorea",
       uri: "http://www.songkick.com/venues/6239-fillmore?utm_source=PARTNER_ID&utm_medium=partner",
       lng: -122.4332937,
       lat: 37.7842398,
