@@ -21,7 +21,7 @@ const Events = () => {
 
       {isLoading ? (
         <>Loading...</>
-      ) : error ? (
+      ) : !error ? (
         <EventsTable events={data} />
       ) : (
         <>error</>
