@@ -1,48 +1,46 @@
-import { FunctionComponent, ReactNode } from "react";
-import styles from "./Table.module.scss";
+import * as TablePart from "../../components/Table/TablePart";
 
-type WrapperComponent = {
-  children: ReactNode;
+export type TableConfigType<T> = {
+  content: Array<TableContentType<T>>;
 };
 
-type RecordProps = {
-  span?: number;
+type TableContentType<T> = {
+  header: string;
+  content: (data: T) => JSX.Element | string;
 };
 
-const Wrapper: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <table className={styles.wrapper}>{children}</table>
-);
+type TableProps<T> = {
+  data: Array<T> | undefined;
+  config: TableConfigType<T>;
+};
 
-const Header: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <thead className={styles.header}>
-    <tr>{children}</tr>
-  </thead>
-);
+const Table = <T extends {}>({ data, config }: TableProps<T>) => {
+  return (
+    <TablePart.Wrapper>
+      <TablePart.Header>
+        {config.content.map(({ header }) => (
+          <TablePart.Heading key={header}>{header}</TablePart.Heading>
+        ))}
+      </TablePart.Header>
+      <TablePart.Body>
+        {data?.length ? (
+          data.map((rowData, key) => (
+            <TablePart.Row key={key}>
+              {config.content.map(({ header, content }) => (
+                <TablePart.Record key={header}>
+                  {content(rowData)}
+                </TablePart.Record>
+              ))}
+            </TablePart.Row>
+          ))
+        ) : (
+          <TablePart.Row>
+            <TablePart.Record span={3}>no data</TablePart.Record>
+          </TablePart.Row>
+        )}
+      </TablePart.Body>
+    </TablePart.Wrapper>
+  );
+};
 
-const Heading: FunctionComponent<RecordProps & WrapperComponent> = ({
-  children,
-  span = 1,
-}) => (
-  <th colSpan={span} className={`${styles.record}`}>
-    {children}
-  </th>
-);
-
-const Body: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <tbody>{children}</tbody>
-);
-
-const Row: FunctionComponent<WrapperComponent> = ({ children }) => (
-  <tr className={styles.row}>{children}</tr>
-);
-
-const Record: FunctionComponent<RecordProps & WrapperComponent> = ({
-  children,
-  span = 1,
-}) => (
-  <td colSpan={span} className={styles.record}>
-    {children}
-  </td>
-);
-
-export { Wrapper, Header, Heading, Body, Row, Record };
+export default Table;
