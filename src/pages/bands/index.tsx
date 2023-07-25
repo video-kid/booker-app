@@ -1,6 +1,5 @@
 import { getCookie } from "cookies-next";
 import useSWR from "swr";
-import * as Table from "../../components/Table/TablePart";
 import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
@@ -8,7 +7,6 @@ import { useFetcher } from "@/hooks/useFetcher/useFetcher";
 import { prepareSpotifyRequestParams } from "./utils";
 import { Artist } from "@/types/artists/artists";
 import { BandsTable } from "./modules/BandsTable";
-import Tabs from "@/components/Tabs/Tabs";
 
 const Bands = () => {
   const spotifyAccessToken = getCookie("spotify_token");
@@ -27,7 +25,6 @@ const Bands = () => {
       <Navbar>
         <Heading>bands</Heading>
       </Navbar>
-      <Tabs />
       {!spotifyAccessToken || isLoading ? (
         <>Loading...</>
       ) : !error && data ? (

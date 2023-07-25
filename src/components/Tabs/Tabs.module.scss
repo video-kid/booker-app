@@ -1,0 +1,17 @@
+.wrapper {
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel {
+}
+
+.button {
+  background-color: var(--tab-active);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+}
