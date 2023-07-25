@@ -6,13 +6,8 @@ import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
 import { useFetcher } from "@/hooks/useFetcher/useFetcher";
 import { prepareSpotifyRequestParams } from "./utils";
-
-type Artist = {
-  genres: Array<string>;
-  id: string;
-  name: string;
-  popularity: number;
-};
+import { Artist } from "@/types/artists/artists";
+import { BandsTable } from "./modules/BandsTable";
 
 const Bands = () => {
   const spotifyAccessToken = getCookie("spotify_token");
@@ -33,29 +28,8 @@ const Bands = () => {
       </Navbar>
       {!spotifyAccessToken || isLoading ? (
         <>Loading...</>
-      ) : !error ? (
-        <Table.Wrapper>
-          <Table.Header>
-            <Table.Heading>name</Table.Heading>
-            <Table.Heading>genres</Table.Heading>
-            <Table.Heading>id</Table.Heading>
-            <Table.Heading>popularity</Table.Heading>
-          </Table.Header>
-          <Table.Body>
-            {data ? (
-              <Table.Row>
-                <Table.Record>{data?.name}</Table.Record>
-                <Table.Record>{data?.genres}</Table.Record>
-                <Table.Record>{data?.id}</Table.Record>
-                <Table.Record>{data?.popularity}</Table.Record>
-              </Table.Row>
-            ) : (
-              <Table.Row>
-                <Table.Record span={3}>no data</Table.Record>
-              </Table.Row>
-            )}
-          </Table.Body>
-        </Table.Wrapper>
+      ) : !error && data ? (
+        <BandsTable artists={[data]} />
       ) : (
         <>err</>
       )}

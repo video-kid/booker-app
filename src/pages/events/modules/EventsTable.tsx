@@ -1,11 +1,7 @@
 import { SongkickEventObject } from "@/types/events/events";
 import Table, { TableConfigType } from "@/components/Table/Table";
 
-const EventsTable = ({
-  events,
-}: {
-  events: Array<SongkickEventObject> | undefined;
-}) => {
+const EventsTable = ({ events }: { events?: Array<SongkickEventObject> }) => {
   const tableConfig: TableConfigType<SongkickEventObject> = {
     content: [
       {
@@ -26,4 +22,4 @@ const EventsTable = ({
   return <Table config={tableConfig} data={events} />;
 };
 
-export default EventsTable;
+export { EventsTable };

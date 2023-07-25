@@ -4,7 +4,7 @@ import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
 import { useFetcher } from "@/hooks/useFetcher/useFetcher";
-import EventsTable from "./EventsTable";
+import EventsTable from "./modules/EventsTable";
 
 const Events = () => {
   const fetcher = useFetcher<Array<SongkickEventObject>>();
