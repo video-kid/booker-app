@@ -25,13 +25,17 @@ const Tabs = ({ tabsConfig, selectedTabKey }: TabsProps) => {
             onClick={() => changeTab(tabId)}
             active={currentTab === tabId}
             data-testid={`tab_${tabId}`}
+            label={tabsConfig[tabId].label}
           >
             {tabsConfig[tabId].label}
           </TabButton>
         ))}
       </nav>
       <div className={styles.panel}>
-        <TabPanel content={tabsConfig[currentTab].panelContent} />
+        <TabPanel
+          label={tabsConfig[currentTab].label}
+          content={tabsConfig[currentTab].panelContent}
+        />
       </div>
     </div>
   ) : null;

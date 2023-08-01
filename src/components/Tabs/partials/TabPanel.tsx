@@ -1,5 +1,15 @@
-const TabPanel = ({ content }: { content: JSX.Element }) => {
-  return <div className="tab-panel">{content}</div>;
+const TabPanel = ({
+  content,
+  label,
+}: {
+  content: JSX.Element;
+  label: string;
+}) => {
+  return (
+    <div id={label} role="tabpanel" tabIndex={0} aria-labelledby={label}>
+      {content}
+    </div>
+  );
 };
 
 export default TabPanel;
