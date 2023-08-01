@@ -1,0 +1,36 @@
+.wrapper {
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel {
+  background-color: var(--background);
+  z-index: 1;
+  position: relative;
+}
+
+.button {
+  background-color: var(--tab);
+  color: var(--white);
+  height: 3.8rem;
+  cursor: pointer;
+  padding-bottom: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  border-radius: 8px;
+  transform: translateY(0.8rem);
+  margin-left: 0.4rem;
+  filter: saturate(0.7);
+  &:first-child {
+    margin: 0;
+  }
+  &[aria-selected="true"] {
+    background-color: var(--tab);
+    filter: saturate(1.1);
+  }
+}

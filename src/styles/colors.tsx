@@ -38,4 +38,5 @@ export const color = {
     information: palette.blue,
   },
   tableHeader: palette.primary["600"],
+  tab: palette.primary["400"],
 };

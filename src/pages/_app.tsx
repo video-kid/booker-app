@@ -23,6 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           --background-sidebar: ${palette.grey["200"]};
           --background-table-header: ${color.tableHeader};
           --background-table-row-dark: ${palette.grey["200"]};
+          --tab: ${color.tab};
           --h1: ${typography.heading.primary};
           --h2: ${typography.heading.primary};
           --h3: ${typography.heading.primary};

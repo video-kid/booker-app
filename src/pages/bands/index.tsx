@@ -1,6 +1,5 @@
 import { getCookie } from "cookies-next";
 import useSWR from "swr";
-import * as Table from "../../components/Table/TablePart";
 import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
