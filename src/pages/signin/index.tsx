@@ -3,35 +3,36 @@ import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
 import { Form } from "./components/Form";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { secrets } from "../../../creds";
 
 const onSubmit = (data: any) => console.log(data);
 
 export async function getStaticProps() {
   const client = new ApolloClient({
-    uri: "https://spacex-production.up.railway.app/",
+    headers: {
+      "x-hasura-admin-secret": `${secrets.db.admin}`,
+    },
+    uri: "https://composed-stingray-81.hasura.app/v1/graphql",
     cache: new InMemoryCache(),
   });
-  const { data } = await client.query({
+  const resp = await client.query({
     query: gql`
       query ExampleQuery {
-        company {
-          ceo
-        }
-        roadster {
-          apoapsis_au
+        users {
+          name
         }
       }
     `,
   });
   return {
     props: {
-      company: data,
+      response: resp,
     },
   };
 }
 
-const Signin = ({ company }) => {
-  console.log("launches", company);
+const Signin = ({ response }) => {
+  console.log(response);
   return (
     <Section>
       <Navbar>
