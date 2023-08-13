@@ -2,24 +2,16 @@ import { Section } from "@/components/Section/Section";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Heading } from "@/components/Heading/Heading";
 import { Form } from "./components/Form";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { secrets } from "../../../creds";
+import { gql, useQuery, useMutation } from "@apollo/client";
 
-const onSubmit = (data: any) => console.log(data);
-
-export async function getStaticProps() {
-  const client = new ApolloClient({
-    headers: {
-      "x-hasura-admin-secret": `${secrets.db.admin}`,
-    },
-    uri: "https://composed-stingray-81.hasura.app/v1/graphql",
-    cache: new InMemoryCache(),
-  });
+const onSubmit = async (data: any) => {
   const resp = await client.query({
     query: gql`
-      query ExampleQuery {
-        users {
-          name
+      mutation {
+        insert_users(objects: [{ name: "bla", id: "69" }]) {
+          returning {
+            name
+          }
         }
       }
     `,
@@ -29,16 +21,34 @@ export async function getStaticProps() {
       response: resp,
     },
   };
-}
+};
 
-const Signin = ({ response }) => {
-  console.log(response);
+const Signin = () => {
+  const GET_USERS = gql`
+    query getUsers {
+      users {
+        name
+      }
+    }
+  `;
+  const { data } = useQuery(GET_USERS);
+  console.log(data);
+  const ADD_USER = gql`
+    mutation {
+      insert_users(objects: [{ name: "bla", id: "69" }]) {
+        returning {
+          name
+        }
+      }
+    }
+  `;
+  const [mutateFunction, bbb] = useMutation(ADD_USER);
   return (
     <Section>
       <Navbar>
         <Heading>sign in</Heading>
       </Navbar>
-      <Form onSubmit={onSubmit} />
+      <Form onSubmit={mutateFunction} />
     </Section>
   );
 };

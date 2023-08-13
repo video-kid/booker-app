@@ -18,7 +18,7 @@ const Form = ({ onSubmit }: FormProps) => {
       <input
         type="password"
         placeholder="password"
-        {...register("password", { required: true })}
+        {...register("id", { required: true })}
       />
 
       <input type="submit" />
