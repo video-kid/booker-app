@@ -4,6 +4,16 @@ import { fontPrimary, fontSecondary } from "@/styles/fonts";
 import { typography } from "@/styles/typography";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { secrets } from "../../creds";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+const client = new ApolloClient({
+  headers: {
+    "x-hasura-admin-secret": `${secrets.db.admin}`,
+  },
+  uri: "https://composed-stingray-81.hasura.app/v1/graphql",
+  cache: new InMemoryCache(),
+});
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -30,9 +40,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           --h5: ${typography.heading.primary};
         }
       `}</style>
-      <Dashboard>
-        <Component {...pageProps} />
-      </Dashboard>
+      <ApolloProvider client={client}>
+        <Dashboard>
+          <Component {...pageProps} />
+        </Dashboard>
+      </ApolloProvider>
     </>
   );
 };
