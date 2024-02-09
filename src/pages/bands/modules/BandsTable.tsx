@@ -1,29 +1,34 @@
-import Table, { TableConfigType } from "@/components/Table/Table";
-import { Artist } from "@/types/artists/artists";
+import Table, { TableConfigType } from '@/components/Table/Table';
+import { Artist } from '@/types/artists/artists';
 
 const BandsTable = ({ artists }: { artists?: Array<Artist> }) => {
   const tableConfig: TableConfigType<Artist> = {
     content: [
       {
-        header: "name",
+        header: 'name',
         content: (data) => <>{data.name}</>,
       },
       {
-        header: "genres",
+        header: 'genres',
         content: (data) => <>{data.genres}</>,
       },
       {
-        header: "id",
+        header: 'id',
         content: (data) => <>{data.id}</>,
       },
       {
-        header: "popularity",
+        header: 'popularity',
         content: (data) => <>{data.popularity}</>,
       },
     ],
   };
 
-  return <Table config={tableConfig} data={artists} />;
+  return (
+    <Table
+      config={tableConfig}
+      data={artists}
+    />
+  );
 };
 
 export { BandsTable };
