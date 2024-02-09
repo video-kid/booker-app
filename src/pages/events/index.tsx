@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import { ModalContext, ModalContextProps } from '@/context/modalContext';
 import { Modal } from '@/components/Modal/Modal';
 import { AddEventFormProps, Form } from './components/Form';
+import Button from '@/components/Button/Button';
 
 const Events = () => {
   const fetcher = useFetcher<Array<SongkickEventObject>>();
@@ -56,12 +57,13 @@ const Events = () => {
     <Section>
       <Navbar>
         <Heading>events</Heading>
-        <button
+        <Button
+          label='add-event'
           onClick={() => {
             setModalComponent(
               <Modal closingHandler={closeModal}>
                 <>
-                  <h2>Add Vacations</h2>
+                  <h2>Add Event</h2>
                   <Form
                     onSubmit={(data) => onSubmit(data, closeModal)}
                     onCancel={closeModal}
@@ -69,10 +71,9 @@ const Events = () => {
                 </>
               </Modal>
             );
-          }}
-          aria-label='add'>
+          }}>
           Add
-        </button>
+        </Button>
       </Navbar>
       <Tabs tabsConfig={tabsObj} />
     </Section>

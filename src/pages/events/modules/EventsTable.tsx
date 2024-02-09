@@ -1,25 +1,30 @@
-import { SongkickEventObject } from "@/types/events/events";
-import Table, { TableConfigType } from "@/components/Table/Table";
+import { SongkickEventObject } from '@/types/events/events';
+import Table, { TableConfigType } from '@/components/Table/Table';
 
 const EventsTable = ({ events }: { events?: Array<SongkickEventObject> }) => {
   const tableConfig: TableConfigType<SongkickEventObject> = {
     content: [
       {
-        header: "name",
+        header: 'name',
         content: (data) => <>{data.displayName}</>,
       },
       {
-        header: "data",
+        header: 'data',
         content: (data) => <>{data.start.date}</>,
       },
       {
-        header: "venue",
+        header: 'venue',
         content: (data) => <>{data.venue.displayName}</>,
       },
     ],
   };
 
-  return <Table config={tableConfig} data={events} />;
+  return (
+    <Table
+      config={tableConfig}
+      data={events}
+    />
+  );
 };
 
 export { EventsTable };

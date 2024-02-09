@@ -1,3 +1,4 @@
+import Button from '@/components/Button/Button';
 import { useForm } from 'react-hook-form';
 
 export type AddEventFormProps = {
@@ -51,17 +52,16 @@ export const Form = ({
         {...register('venue', {})}
       />
 
-      <button
-        type='button'
-        aria-label='cancel'
+      <Button
+        label='cancel'
         onClick={onCancel}>
         Cancel
-      </button>
-      <button
-        aria-label='save'
+      </Button>
+      <Button
+        label='save'
         type='submit'>
         Save
-      </button>
+      </Button>
     </form>
   );
 };
