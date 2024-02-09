@@ -1,4 +1,4 @@
-import { Fetcher } from "swr";
+import type { Fetcher } from 'swr';
 
 const useFetcher = <T extends {}>(init?: RequestInit): Fetcher<T> => {
   const fetcher: Fetcher<T> = (url: RequestInfo | URL) =>
